@@ -1,8 +1,34 @@
+import { BellIcon, HomeIcon, LogoutIcon, SettingsIcon } from '../icons';
+import Logo from './Logo';
+import MenuItem from './MenuItem';
+
 const Sidebar = () => {
   return (
-    <aside>
+    <aside className={`flex flex-col`}>
+      <div
+        className={`
+        flex flex-col items-center justify-center
+        bg-gradient-to-r from-indigo-500 to-purple-800
+        h-20 w-20
+      `}
+      >
+        <Logo />
+      </div>
+      <ul className={`flex-grow`}>
+        <MenuItem url='/' text='Home' icon={HomeIcon} />
+        <MenuItem url='/settings' text='Settings' icon={SettingsIcon} />
+        <MenuItem url='/notifications' text='Notifications' icon={BellIcon} />
+      </ul>
       <ul>
-        
+        <MenuItem
+          onClick={() => console.log('Logout')}
+          text='Logout'
+          icon={LogoutIcon}
+          className={`
+          text-red-600
+          hover:bg-red-400 hover:text-white
+          `}
+        />
       </ul>
     </aside>
   );

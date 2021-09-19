@@ -2,7 +2,7 @@ import Layout from '../components/template/Layout';
 
 const Notifications = () => {
   return (
-    <Layout title='Página Inicial' subtitle='On working...'>
+    <Layout title='Notificações' subtitle='Manage your notifications'>
       <h3>Content</h3>
     </Layout>
   );
