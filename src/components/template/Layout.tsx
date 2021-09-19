@@ -1,3 +1,4 @@
+import useAppData from '../../data/hook/useAppData';
 import Content from './Content';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
@@ -9,8 +10,10 @@ interface LayoutProps {
 }
 
 const Layout = (props: LayoutProps) => {
+  const { theme } = useAppData();
+
   return (
-    <div className={`dark flex h-screen w-screen`}>
+    <div className={`${theme} flex h-screen w-screen`}>
       <Sidebar />
       <div
         className={`
