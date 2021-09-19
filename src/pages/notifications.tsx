@@ -6,7 +6,7 @@ const Notifications = () => {
 
   return (
     <Layout title='Notificações' subtitle='Manage your notifications'>
-      <button onClick={changeTheme}>Change Theme</button>
+      <h1>Content</h1>
     </Layout>
   );
 };
