@@ -10,7 +10,7 @@ interface LayoutProps {
 
 const Layout = (props: LayoutProps) => {
   return (
-    <div className={`flex h-screen w-screen`}>
+    <div className={`dark flex h-screen w-screen`}>
       <Sidebar />
       <div
         className={`
