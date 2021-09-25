@@ -1,8 +1,11 @@
+import useAuth from '../../data/hook/useAuth';
 import { BellIcon, HomeIcon, LogoutIcon, SettingsIcon } from '../icons';
 import Logo from './Logo';
 import MenuItem from './MenuItem';
 
 const Sidebar = () => {
+  const { logout } = useAuth();
+
   return (
     <aside
       className={`
@@ -27,7 +30,7 @@ const Sidebar = () => {
       </ul>
       <ul>
         <MenuItem
-          onClick={() => console.log('Logout')}
+          onClick={logout}
           text='Logout'
           icon={LogoutIcon}
           className={`

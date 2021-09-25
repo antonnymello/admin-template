@@ -1,6 +1,7 @@
 import useAppData from '../../data/hook/useAppData';
 import ThemeButton from './ThemeButton';
 import Title from './Title';
+import UserAvatar from './UserAvatar';
 
 interface TopbarProps {
   title: string;
@@ -12,8 +13,9 @@ const Topbar = (props: TopbarProps) => {
   return (
     <div className={`flex`}>
       <Title title={props.title} subtitle={props.subtitle} />
-      <div className={`flex flex-grow justify-end`}>
+      <div className={`flex flex-grow justify-end items-center`}>
         <ThemeButton theme={theme} changeTheme={changeTheme} />
+        <UserAvatar className='ml-3' />
       </div>
     </div>
   );

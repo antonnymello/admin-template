@@ -2,8 +2,10 @@ import { useState } from 'react';
 import Image from 'next/image';
 import AuthInput from '../components/auth/AuthInput';
 import { WarningIcon } from '../components/icons';
+import useAuth from '../data/hook/useAuth';
 
 const Authentication = () => {
+  const { user, loginGoogle } = useAuth();
   const [mode, setMode] = useState<'login' | 'register'>('login');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -81,10 +83,10 @@ const Authentication = () => {
         <hr className='my-6 border-grey-300 w-full' />
 
         <button
-          onClick={submit}
+          onClick={loginGoogle}
           className={`
         flex items-center justify-center
-      w-full bg-red-500 hover:bg-red-400
+        w-full bg-red-500 hover:bg-red-400
       text-white font-bold py-3 px-4 rounded-lg
       `}
         >
