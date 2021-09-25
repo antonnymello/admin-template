@@ -6,6 +6,7 @@ import firebase from '../../firebase/config';
 
 interface AuthContextProps {
   user?: User;
+  loading?: boolean;
   loginGoogle?: () => Promise<void>;
   logout?: () => Promise<void>;
 }
@@ -78,6 +79,8 @@ export const AuthProvider = (props) => {
     if (Cookies.get('admin-template-auth')) {
       const cancel = firebase.auth().onIdTokenChanged(configSession);
       return () => cancel();
+    } else {
+      setLoading(false);
     }
   }, []);
 
@@ -85,6 +88,7 @@ export const AuthProvider = (props) => {
     <AuthContext.Provider
       value={{
         user,
+        loading,
         loginGoogle,
         logout,
       }}
