@@ -7,6 +7,8 @@ import firebase from '../../firebase/config';
 interface AuthContextProps {
   user?: User;
   loading?: boolean;
+  login?: (email: string, password: string) => Promise<void>;
+  register?: (email: string, password: string) => Promise<void>;
   loginGoogle?: () => Promise<void>;
   logout?: () => Promise<void>;
 }
@@ -58,7 +60,35 @@ export const AuthProvider = (props) => {
       const response = await firebase
         .auth()
         .signInWithPopup(new firebase.auth.GoogleAuthProvider());
-      configSession(response.user);
+      await configSession(response.user);
+      await router.push('/');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const login = async (email, password) => {
+    try {
+      setLoading(true);
+      const response = await firebase
+        .auth()
+        .signInWithEmailAndPassword(email, password);
+
+      await configSession(response.user);
+      await router.push('/');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const register = async (email, password) => {
+    try {
+      setLoading(true);
+      const response = await firebase
+        .auth()
+        .createUserWithEmailAndPassword(email, password);
+
+      await configSession(response.user);
       await router.push('/');
     } finally {
       setLoading(false);
@@ -89,6 +119,8 @@ export const AuthProvider = (props) => {
       value={{
         user,
         loading,
+        login,
+        register,
         loginGoogle,
         logout,
       }}

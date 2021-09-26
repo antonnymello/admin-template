@@ -5,7 +5,7 @@ import { WarningIcon } from '../components/icons';
 import useAuth from '../data/hook/useAuth';
 
 const Authentication = () => {
-  const { user, loginGoogle } = useAuth();
+  const { register, login, loginGoogle } = useAuth();
   const [mode, setMode] = useState<'login' | 'register'>('login');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -16,13 +16,15 @@ const Authentication = () => {
     setTimeout(() => setError(null), timeout);
   };
 
-  const submit = () => {
-    if (mode === 'login') {
-      console.log('login');
-      renderError('Login Error!');
-    } else {
-      console.log('register');
-      renderError('Register Failed!');
+  const submit = async () => {
+    try {
+      if (mode === 'login') {
+        await login(email, password);
+      } else {
+        await register(email, password);
+      }
+    } catch (error) {
+      renderError(error?.message ?? 'An error occurred');
     }
   };
 
